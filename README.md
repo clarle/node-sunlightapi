@@ -48,8 +48,8 @@ legislators.getList works much the same way, but reutrns a list. It is possible 
 
 ``` js
   sunlight.legislators.getList({state: 'NY', party='R'}, function(reps) {
-    for (rep in reps) {
-      console.log(rep.title + '. ' + rep.firstname + ' ' + rep.lastname);
+    for (i in reps) {
+      console.log(reps[i].title + '. ' + reps[i].firstname + ' ' + reps[i].lastname);
     }
   });
   // Rep. Pete King
@@ -88,8 +88,8 @@ To get all legislators that represent the 27511 zipcode:
 
 ``` js
   sunlight.legislators.allForZip('27511', function(legs) {
-    for (leg in legs) {
-      console.log(leg.title + '. ' + leg.firstname + ' ' + leg.lastname);
+    for (i in legs) {
+      console.log(legs[i].title + '. ' + legs[i].firstname + ' ' + legs[i].lastname);
     }
   });
   // Rep. David Price
@@ -108,8 +108,8 @@ To get all legislators that represent a location in western PA at 41.92, -80.14:
 
 ``` js
   sunlight.legislators.allForLatLong(41.92, -80.14, function(legs) {
-    for (leg in legs) {
-      console.log(leg.title + '. ' + leg.firstname + ' ' + leg.lastname);
+    for (i in legs) {
+      console.log(legs[i].title + '. ' + legs[i].firstname + ' ' + legs[i].lastname);
     }
   });
   // Sen. Bob Casey
@@ -146,8 +146,8 @@ To see all joint committees for the current Congress:
 
 ``` js
   sunlight.committee.getList('Joint', function(coms) {
-    for (com in coms) {
-      console.log(com.name);
+    for (i in coms) {
+      console.log(coms[i].name);
     }
   });
   // Joint Economic Committee
@@ -164,8 +164,8 @@ Showing all of a legislator's committees:
 
 ``` js
   sunlight.committees.allForLegislator('S000148', function(coms) {
-    for (com in coms) {
-      console.log(com.name);
+    for (i in coms) {
+      console.log(coms[i].name);
     }
   });
   // Senate Committee on Rules and Administration
@@ -192,8 +192,8 @@ To get all districts that overlap 14623:
 
 ``` js
   sunlight.districts.getDistrictsFromZip('14623', function(dists) {
-    for (dist in dists) {
-        console.log(dist);
+    for (i in dists) {
+        console.log(dists[i]);
     }
   });
 // NY-29
@@ -208,6 +208,6 @@ To find out what district 61.13 N, 149.54 W falls within:
 ``` js
   sunlight.districts.getDistrictFromLatLong(61.13, 149.54, function(dists) {
     console.log(dists[0]);
-  }
+  });
   // AK-0
 ```

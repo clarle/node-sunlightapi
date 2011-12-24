@@ -8,6 +8,7 @@
         "url": "git://github.com/clarle/node-sunlightapi.git"
     },
     "author": "Clarence Leung <cleung0@gmail.com>",
+    "main": "sunlight.js",
     "dependencies": {
         "request": "~2"
     },
