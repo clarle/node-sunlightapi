@@ -16,7 +16,6 @@ var SunlightClient = exports.SunlightClient = function(apiKey) {
         var query = qs.stringify(params);
 
         var uri = encodeURI("http://services.sunlightlabs.com/api/" + type + ".json?apikey=" + this.key + "&" + query);
-        console.log(uri);
         request(uri, function (err, res, body) {
             if (!err && res.statusCode == 200) {
                 var result = JSON.parse(body).response;
@@ -39,7 +38,7 @@ LegislatorClient.prototype = {
     getList: function(query, callback) {
         this.parent._call('legislators.getList', query, callback);
     },
-    search: function(name, callback, options) {
+    search: function(name, options, callback) {
         var query = { name: name };
         for (key in options) {
             query[key] = options[key];
@@ -77,7 +76,7 @@ var DistrictClient = function(parent) {
 }
 
 DistrictClient.prototype = {
-    getDistrictFromZip: function(zip, callback) {
+    getDistrictsFromZip: function(zip, callback) {
         this.parent._call('districts.getDistrictFromZip', {zip: zip}, callback);
     },
     getDistrictFromLatLong: function(latitude, longitude, callback) {
