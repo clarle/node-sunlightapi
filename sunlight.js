@@ -77,7 +77,7 @@ var DistrictClient = function(parent) {
 
 DistrictClient.prototype = {
     getDistrictsFromZip: function(zip, callback) {
-        this.parent._call('districts.getDistrictFromZip', {zip: zip}, callback);
+        this.parent._call('districts.getDistrictsFromZip', {zip: zip}, callback);
     },
     getDistrictFromLatLong: function(latitude, longitude, callback) {
         this.parent._call('districts.getDistrictFromLatLong',
