@@ -34,6 +34,7 @@ If you don't have an API key, you can get one [here](http://services.sunlightlab
 legislators.get and legislators.getList both take a JavaScript object representing the query parameters and a callback function.  They return all legislators that match the provided criteria.  These parameters are also the ones returned in each legislator object.  
 
 The available parameters are:
+  
   * title
   * firstname
   * middlename
