@@ -10,5 +10,8 @@
     "author": "Clarence Leung <cleung0@gmail.com>",
     "dependencies": {
         "request": "~2"
+    },
+    "devDependencies": {
+        "nodeunit": "~0.5.5"
     }
 }
