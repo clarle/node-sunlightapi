@@ -1,0 +1,14 @@
+{
+    "name": "sunlight",
+    "description": "Node.js wrapper library for the Sunlight Labs API",
+    "version": "0.0.1",
+    "homepage": "https://github.com/clarle/node-sunlightapi",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/clarle/node-sunlightapi.git"
+    },
+    "author": "Clarence Leung <cleung0@gmail.com>",
+    "dependencies": {
+        "request": "~2"
+    }
+}
