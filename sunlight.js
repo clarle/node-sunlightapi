@@ -19,12 +19,32 @@ var SunlightClient = exports.SunlightClient = function(apiKey) {
         request(uri, function (err, res, body) {
             if (!err && res.statusCode == 200) {
                 var result = JSON.parse(body).response;
+                result = _adjust(result);
                 callback(result);
             } else {
                 callback(new Error(body));
             }
         });
-    }        
+    }
+}
+    
+// Necessary function to maintain async while adjusting object
+
+var _adjust = function(obj) {
+    if (obj.legislator != null) {
+        obj = obj.legislator;
+    } else if (obj.legislators != null) {
+        obj = obj.legislators.map(function(i) { return i.legislator; });
+    } else if (obj.results != null) {
+        obj = obj.results.map(function(i) { return i.result });
+    } else if (obj.committee != null) {
+        obj = obj.committee;
+    } else if (obj.committees != null) {
+        obj = obj.committees.map(function(i) { return i.committee });
+    } else if(obj.districts != null) {
+        obj = obj.districts.map(function(i) { return i.district });
+    }
+    return obj;
 }
 
 var LegislatorClient = function(parent) {
