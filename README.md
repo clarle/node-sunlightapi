@@ -33,7 +33,7 @@ If you don't have an API key, you can get one [here](http://services.sunlightlab
     
 legislators.get and legislators.getList both take a JavaScript object representing the query parameters and a callback function.  They return all legislators that match the provided criteria.  These parameters are also the ones returned in each legislator object.  
 
-All available parameters can be found in the [documentation](http://services.sunlightlabs.com/docs/congressapi/legislators.get(List)/).
+All available parameters can be found in the [documentation](http://services.sunlightlabs.com/docs/congressapi/legislators.get%28List%29).
 
 To get the represenative that represents NC-4:
 
@@ -114,7 +114,7 @@ To get all legislators that represent a location in western PA at 41.92, -80.14:
   });
   // Sen. Bob Casey
   // Sen. Arlen Specter
-  // Rep. kathy Dahlkemper
+  // Rep. Kathy Dahlkemper
 ```
 
 ### Committees methods
