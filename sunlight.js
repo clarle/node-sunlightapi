@@ -1,5 +1,6 @@
 var qs      = require('querystring'),
-    request = require('request');
+    request = require('request'),
+    async   = require('async');
 
 var SunlightClient = exports.SunlightClient = function(apiKey) {
     this.key = apiKey;
@@ -19,37 +20,67 @@ var SunlightClient = exports.SunlightClient = function(apiKey) {
         request(uri, function (err, res, body) {
             if (!err && res.statusCode == 200) {
                 var result = JSON.parse(body).response;
-                result = _adjust(result);
-                callback(result);
+                _adjust(result, callback);
             } else {
                 callback(new Error(body));
             }
         });
-    }
-}
+    };
+};
     
 // Necessary function to maintain async while adjusting object
 
-var _adjust = function(obj) {
+var _adjust = function(obj, callback) {
     if (obj.legislator != null) {
-        obj = obj.legislator;
+        callback(obj.legislator);
     } else if (obj.legislators != null) {
-        obj = obj.legislators.map(function(i) { return i.legislator; });
+        async.map(obj.legislators, function(i, cb) { 
+            process.nextTick(function() {
+              cb(null, i.legislator);
+            });
+          }, 
+            function(err, results) {
+              if (err) throw err;
+              callback(results);
+        });
     } else if (obj.results != null) {
-        obj = obj.results.map(function(i) { return i.result });
+        async.map(obj.results, function(i, cb) { 
+            process.nextTick(function() {
+              cb(null, i.result);
+            });
+          }, 
+            function(err, results) {
+              if (err) throw err;
+              callback(results);
+        });
     } else if (obj.committee != null) {
-        obj = obj.committee;
+        callback(obj.committee);
     } else if (obj.committees != null) {
-        obj = obj.committees.map(function(i) { return i.committee });
+        async.map(obj.committees, function(i, cb) { 
+            process.nextTick(function() {
+              cb(null, i.committee);
+            });
+          },
+            function(err, results) {
+              if (err) throw err;
+              callback(results);
+        });
     } else if(obj.districts != null) {
-        obj = obj.districts.map(function(i) { return i.district });
+        async.map(obj.districts, function(i, cb) {
+            process.nextTick(function() {
+              cb(null, i.district);
+            });
+          }, 
+            function(err, results) {
+              if (err) throw err;
+              callback(results);
+        });
     }
-    return obj;
-}
+};
 
 var LegislatorClient = function(parent) {
     this.parent = parent;
-}
+};
 
 LegislatorClient.prototype = {
     get: function(query, callback) {
