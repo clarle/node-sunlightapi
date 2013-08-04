@@ -1,4 +1,4 @@
-# node-sunlightapi
+# node-sunlightapi [deprecated]
 
 A Node.js client library for the [Sunlight Labs Congress API](http://services.sunlightlabs.com/docs/Sunlight_Congress_API/).
 
